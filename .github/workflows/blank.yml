@@ -16,14 +16,14 @@ jobs:
         run: |
           mkdir -p build_output
           gh release download 2.0.0 \
-            --pattern "*.aab" \
+            --pattern "Jump Shot Jam_2.aab" \
             --dir build_output
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
-          
+
       - name: Install Fastlane
         run: gem install fastlane
 
@@ -33,19 +33,3 @@ jobs:
         run: |
           export GOOGLE_PLAY_JSON_KEY="$(echo "$GOOGLE_PLAY_JSON_KEY")"
           fastlane android upload_to_internal
-
-platform :android do
-  lane :upload_to_internal do
-    supply(
-      json_key_data: ENV["GOOGLE_PLAY_JSON_KEY"],
-      package_name: "com.jump.shot.jam.game",
-      aab: "build_output/Jump Shot Jam_2.aab",
-      track: "internal",
-      release_status: "completed",
-      skip_upload_changelogs: false,
-      skip_upload_images: true,
-      skip_upload_screenshots: true,
-      skip_upload_metadata: true
-    )
-  end
-end

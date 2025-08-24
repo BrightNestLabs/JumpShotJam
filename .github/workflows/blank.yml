@@ -10,6 +10,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: List releases and assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view 2.0.0 --json assets --jq '.assets[].name'
+
       - name: Download AAB from GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

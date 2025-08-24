@@ -10,12 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: List releases and assets
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release view 2.0.0 --json assets --jq '.assets[].name'
-
       - name: Download AAB from GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,6 +18,17 @@ jobs:
           gh release download 2.0.0 \
             --pattern "Jump.Shot.Jam_2.aab" \
             --dir build_output
+
+      - name: Check Fastfile existence
+        run: |
+          echo "== CURRENT DIR =="
+          pwd
+          echo "== DIR LIST =="
+          ls -l
+          echo "== FASTLANE DIR LIST =="
+          ls -l fastlane || echo "NO fastlane DIR"
+          echo "== FASTFILE CONTENTS =="
+          cat fastlane/Fastfile || echo "NO Fastfile"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

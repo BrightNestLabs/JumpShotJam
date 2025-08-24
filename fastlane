@@ -1,6 +1,0 @@
-mkdir -p fastlane
-nano fastlane/Fastfile
-# вставьте содержимое выше, сохраните файл
-git add fastlane/Fastfile
-git commit -m "Add Fastlane Fastfile for deployment"
-git push

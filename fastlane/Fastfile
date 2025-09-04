@@ -3,7 +3,7 @@ platform :android do
     supply(
       json_key_data: ENV["GOOGLE_PLAY_JSON_KEY"],
       package_name: "com.jump.shot.jam.game",
-      aab: "build_output/Jump.Shot.Jam_2.aab",
+      aab: "build_output/Jump.Shot.Jam_3.aab",
       track: "internal",
       release_status: "draft",
       skip_upload_changelogs: false,

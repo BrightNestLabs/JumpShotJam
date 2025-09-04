@@ -16,25 +16,14 @@ jobs:
         run: |
           mkdir -p build_output
           gh release download 3.0.0 \
-            --pattern "Jump.Shot.Jam_3.aab" \
+            --pattern "*.aab" \
             --dir build_output
-
-      - name: Check Fastfile existence
-        run: |
-          echo "== CURRENT DIR =="
-          pwd
-          echo "== DIR LIST =="
-          ls -l
-          echo "== FASTLANE DIR LIST =="
-          ls -l fastlane || echo "NO fastlane DIR"
-          echo "== FASTFILE CONTENTS =="
-          cat fastlane/Fastfile || echo "NO Fastfile"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
-
+          
       - name: Install Fastlane
         run: gem install fastlane
 
